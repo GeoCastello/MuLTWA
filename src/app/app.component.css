@@ -1,0 +1,50 @@
+.navbar{
+    border-radius: 0;
+}
+
+#carousel {
+    margin-top:20px;
+    min-height:15em;
+    background-color: grey;
+}
+
+#main{
+    margin-top:20px;
+    min-height:600px;
+}
+
+#form_area{
+    min-height:250px;
+    background-color: lightblue;
+}
+
+#map_area{
+    background-color: black;
+    color:white;
+}
+
+#footer{
+    margin-top:20px;
+    min-height:250px;
+    background-color: black;
+    color:white;
+}
+
+
+.row-fluid #form_area, #map_area {
+    min-height: 45em;
+    -webkit-transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+    -moz-transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+    -o-transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+    transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+    margin: 0;
+}
+
+.row-fluid .col-0 {
+    width: 0%;
+    float:left;
+}
+
+.row-fluid .col-0 + [class*="col"]{
+    margin-left: 0;
+}

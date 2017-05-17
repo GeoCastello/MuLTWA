@@ -1,0 +1,13 @@
+#trig{
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); 
+    color: lightslategray;
+    font-size: 20px;
+}
+
+#trig:hover{
+    text-decoration: none;
+    color: orangered;
+}
