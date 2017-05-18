@@ -1,0 +1,57 @@
+.weather-carousel {
+  width: 95%;
+  display: block;
+  margin: auto;
+}
+
+.weather-card {
+  height: 240px;
+  width: 140px;
+  margin: 15px;
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+
+.weather-card-city-name {
+  text-align: center;
+}
+
+.weather-card-city-date {
+  text-align: center;
+}
+
+.weather-card-conditions-img {
+  height: 100px;
+  width: 100px;
+  display: block;
+  margin: auto;
+}
+
+.weather-card-conditions-text {
+  text-align: center;
+}
+
+.weather-card-temperature-table {
+  width: 100%
+}
+
+.weather-card-temperature-row {
+  width: 100%
+}
+
+.weather-card-temperature-min-text {
+  margin: 5px;
+  text-align: left;
+}
+
+.weather-card-temperature-avg-text {
+  margin: 5px;
+  text-align: center;
+}
+
+.weather-card-temperature-max-text {
+  margin: 5px;
+  text-align: right;
+}
