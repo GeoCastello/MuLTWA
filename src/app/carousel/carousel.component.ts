@@ -52,22 +52,23 @@ export class CarouselComponent implements OnInit {
             var conditionCode = myJSON.list[numDays-1].weather[0].id;
             var iconCode = myJSON.list[numDays-1].weather[0].icon;
 
-            $('.weather-carousel').slick('slickAdd',
-              '<div class="weather-card"><h3 class="weather-card-city-name"><b>'
-              + cityName +
-              '</b></h3><h5 class="weather-card-city-date">'
-              + (numDays-1) +
-              '</h5><img src="http://openweathermap.org/img/w/'
-              + iconCode +
-              '.png" class="weather-card-conditions-img"><h6 class="weather-card-conditions-text">'
-              + conditionCode +
-              '</h6><table class="weather-card-temperature-table"><tr class="weather-card-temperature-row"><td><h6 class="weather-card-temperature-min-text">Min: '
-              + minTemperature +
-              '°</h6></td><td><h6 class="weather-card-temperature-avg-text">Avg: '
-              + avgTemperature +
-              '°</h6></td><td><h6 class="weather-card-temperature-max-text">Max: '
-              + maxTemperature +
-              '°</h6></td></tr></table></div></div>')
+            var weatherCard = '<div class="weather-card"><h3 class="weather-card-city-name"><b>'
+                              + cityName +
+                              '</b></h3><h5 class="weather-card-city-date">'
+                              + (numDays-1) +
+                              '</h5><img src="http://openweathermap.org/img/w/'
+                              + iconCode +
+                              '.png" class="weather-card-conditions-img"><h6 class="weather-card-conditions-text">'
+                              + conditionCode +
+                              '</h6><table class="weather-card-temperature-table"><tr class="weather-card-temperature-row"><td><h6 class="weather-card-temperature-min-text">Min: '
+                              + minTemperature +
+                              '°</h6></td><td><h6 class="weather-card-temperature-avg-text">Avg: '
+                              + avgTemperature +
+                              '°</h6></td><td><h6 class="weather-card-temperature-max-text">Max: '
+                              + maxTemperature +
+                              '°</h6></td></tr></table></div></div>'
+
+            $('.weather-carousel').slick('slickAdd', weatherCard)
 
           }
         }
