@@ -23,6 +23,15 @@ export class CarouselComponent implements OnInit {
       slidesToScroll: 1
     });
 
+    var totalSlides = 0;
+
+    /*$('.weather-carousel').on('afterChange', function() {
+      if (totalSlides > 5) {
+        $('.weather-carousel').slick('slickGoTo', totalSlides-5);
+        $('.weather-carousel').slick('refresh');
+      }
+    });*/
+
     // Add card via button
     $('.add-card-coords-button').click(function() {
 
@@ -67,6 +76,13 @@ export class CarouselComponent implements OnInit {
                               '°</h6></td></tr></table></div></div>'
 
             $('.weather-carousel').slick('slickAdd', weatherCard);
+            $('.weather-carousel').slick('refresh');
+            totalSlides++;
+            console.log('totalSlides = ' + totalSlides);
+            if (totalSlides > 5) {
+              $('.weather-carousel').slick('slickGoTo', totalSlides-5);
+              $('.weather-carousel').slick('refresh');
+            }
 
           }
         }
@@ -122,6 +138,12 @@ export class CarouselComponent implements OnInit {
 
             $('.weather-carousel').slick('slickAdd', weatherCard);
             $('.weather-carousel').slick('refresh');
+            totalSlides++;
+            console.log('totalSlides = ' + totalSlides)
+            $('.weather-carousel').slick('refresh');
+            if (totalSlides > 5) {
+              $('.weather-carousel').slick('slickGoTo', totalSlides-5);
+            }
 
           }
         }
@@ -137,6 +159,7 @@ export class CarouselComponent implements OnInit {
       var weatherCardIndex = $(this).parent().attr('data-slick-index');
       $('.weather-carousel').slick('slickRemove', weatherCardIndex)
       $('.weather-carousel').slick('refresh');
+      totalSlides--;
 
     })
 
