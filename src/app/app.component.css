@@ -6,7 +6,7 @@
     right:0;
     padding:10px;
     float: right;
-    
+
     -webkit-transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
     -moz-transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
     -o-transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;

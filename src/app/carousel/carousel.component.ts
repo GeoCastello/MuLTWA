@@ -19,9 +19,10 @@ export class CarouselComponent implements OnInit {
     // Initialize carousel
     $('.weather-carousel').slick({
       arrows: true,
-      slidesToShow: 5,
-      slidesToScroll: 1
-    });
+      variableWidth: true,
+      slidesToShow: 4,             /* slidesToShow should not have a value.  but there is an issue with empty space   */
+      slidesToScroll: 1            /* at the end when variableWidth = true.  it is an ongoing issue with slick        */
+    });                            /* itself.  see: https://github.com/kenwheeler/slick/issues/1968                   */
 
     var totalSlides = 0;
 
@@ -128,23 +129,19 @@ export class CarouselComponent implements OnInit {
               + iconCode +
               '.png" class="weather-card-conditions-img"><h6 class="weather-card-conditions-text">'
               + conditionText +
-              '</h6><button class="weather-card-remove-button">Remove</button><table class="weather-card-temperature-table"><tr class="weather-card-temperature-row"><td class="weather-card-temperature-col"><p class="weather-card-temperature-min-text">Min: '
+              '</h6><button class="weather-card-remove-button">Remove</button><table class="weather-card-temperature-table"><tr class="weather-card-temperature-row"><td><h6 class="weather-card-temperature-min-text">Min: '
               + minTemperature +
-              '°</p></td><td class="weather-card-temperature-col"><p class="weather-card-temperature-avg-text">Avg: '
+              '°</h6></td><td><h6 class="weather-card-temperature-avg-text">Avg: '
               + avgTemperature +
-              '°</p></td><td class="weather-card-temperature-col"><p class="weather-card-temperature-max-text">Max: '
+              '°</h6></td><td><h6 class="weather-card-temperature-max-text">Max: '
               + maxTemperature +
-              '°</p></td></tr></table></div></div>'
+              '°</h6></td></tr></table></div></div>'
 
             $('.weather-carousel').slick('slickAdd', weatherCard);
             $('.weather-carousel').slick('refresh');
             totalSlides++;
             console.log('totalSlides = ' + totalSlides)
             $('.weather-carousel').slick('refresh');
-            if (totalSlides > 5) {
-              $('.weather-carousel').slick('slickGoTo', totalSlides-5);
-            }
-
           }
         }
       };
