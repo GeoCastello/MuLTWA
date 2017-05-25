@@ -8,6 +8,7 @@ import { OpenlayersComponent } from './openlayers/openlayers.component';
 import { FormComponent } from './form/form.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { WeatherServiceComponent } from './shared/weather-service/weather-service.component';
+import { LocationServiceComponent } from './shared/location-service/location-service.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,8 @@ import { WeatherServiceComponent } from './shared/weather-service/weather-servic
     OpenlayersComponent,
     FormComponent,
     CarouselComponent,
+    WeatherServiceComponent,
+    LocationServiceComponent
   ],
   imports: [
     BrowserModule,

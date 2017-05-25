@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/openlayers/css/ol.css";
 
+<<<<<<< HEAD
 /* Carousel Weather Cards */
 
 .weather-card {
@@ -75,3 +77,8 @@
   text-align: right;
   overflow: hidden;
 }
+=======
+.toggleForm{
+    margin-left:-500px;
+}
+>>>>>>> 9cfcce347acaf6fe43030a64de7040fc2333386c
