@@ -3,18 +3,37 @@
 
 /* Carousel Weather Cards */
 
+.weather-carousel {
+  width: 90%;
+  margin: 2.5%;
+}
+
 .weather-card {
-  margin: 15px;
   background-color: white;
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
+  border: 1px solid black;
+  position: relative;
+  margin: 0.5vw;
+}
+
+.card-narrow {
+  width: 12.5vw;
+}
+
+.card-wide {
+  width: 17vw;
+}
+
+.weather-card-wide {
+  width: 1000px;
+  margin: 0.5vw;
+  background-color: white;
+  border: 1px solid black;
   position:relative;
 }
 
 .weather-card-city-name {
-  /*white-space: nowrap;*/
-  margin: 5px;
+  white-space: nowrap;
+  margin: 1%;
   text-align: center;
   overflow: hidden;
   text-align: center;
@@ -45,15 +64,10 @@
 
 .weather-card-temperature-table {
   width: 100%;
-  display:inline-block;
-}
-
-.weather-card-temperature-row {
-  width: 100%;
 }
 
 .weather-card-temperature-col {
-  max-width: 0;
+  width: 33%;
   overflow: hidden;
 }
 
