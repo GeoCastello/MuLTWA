@@ -1,76 +1,88 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { WeatherServiceComponent } from '../shared/weather-service/weather-service.component';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Renderer } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+
+import { WeatherService } from '../shared/weather.service'
+
+import * as L from "leaflet";
+import {Map} from "leaflet";
+
 
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/mergeMap";
 
-import * as ol from 'openlayers';
 
 @Component({
   selector: 'app-openlayers',
   templateUrl: './openlayers.component.html',
-  styleUrls: ['./openlayers.component.css']
+  styleUrls: ['./openlayers.component.css'],
+  providers: [WeatherService]
 })
 
 export class OpenlayersComponent implements OnInit {
-  @ViewChild(WeatherServiceComponent) weatherService: WeatherServiceComponent;
+
+@Output() newData: EventEmitter<any> = new EventEmitter<any>();
   
   //private weatherData:any;
-  private lat:number=49.0069; private lng:number=8.4037;private numDays:number=5;
+  private numDays:number=5;
   private REQUEST:string="http://api.openweathermap.org/data/2.5/forecast/daily?lat=";
   private MAP_PROJECTION:string = "EPSG:900913"
   private apiKey:string = "66caf7904e4bf65c8754dc23dd947e5d";
   private http:Http;
-  private weatherData:JSON;
+  private weatherData;
   private userCoords:any;
-  private map:ol.Map;
   
+  private map:Map;
   
-    constructor(http: Http) {
+  private icon;
+  
+    constructor(http: Http, private _weatherRequest: WeatherService) {
         this.http = http;
     }
 
   ngOnInit():void {
-
-    // Warm up the weather service for action ;), for some reason it only responds after first trial ;)
-    this.weatherService.getData(String(49.00), String(8.50), String(5));
-
-    this.map = new ol.Map({
-        controls: ol.control.defaults({
-			  attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
-				collapsible: false})
-        }).extend([
-			new ol.control.ZoomToExtent({
-				extent: [
-					813079.7791264898, 5929220.284081122,
-					848966.9639063801, 5936863.986909639
-				]
-			})
-        ]),
-        layers: [
-			new ol.layer.Tile({
-				source: new ol.source.OSM()
-			})
-        ],
-        target: 'map',
-        view: new ol.View({
-        	projection: this.MAP_PROJECTION,
-			center: [	934627.7737138773, 6268581.861806088],
-			zoom: 5
-        })
-	  });
-
+    
+    this.map = L.map("map",
+        {center:[49.00, 8.49], 
+        zoom:12, 
+        zoomControl: false
+        });
+    
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar'}).addTo(this.map);
+      
+    
     // Events captured
     this.map.on('click', this.getWeatherData, this); 
+    
 
   }
 
+
   public getWeatherData(e){
-      this.userCoords = ol.proj.transform(e.coordinate, this.MAP_PROJECTION, 'EPSG:4326');
-      this.weatherData = this.weatherService.getData(String(this.userCoords[1]), String(this.userCoords[0]), String(this.numDays));
-      console.log('Weather Report of Clicked Point on the Map '); console.log(this.weatherData)
+            
+            let greenIcon = L.icon({
+                iconUrl: 'https://www.iconfinder.com/data/icons/social-media-8/512/pointer.png',
+
+                iconSize:     [38, 38], // size of the icon
+                iconAnchor:   [18, 35], // point of the icon which will correspond to marker's location
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
+            
+            
+            let marker = L.marker(e.latlng, {icon: greenIcon}).addTo(this.map);
+  
+            let temp = this._weatherRequest
+                            .getRequest(String(e.latlng.lat), String(e.latlng.lng), String(this.numDays))
+                            .subscribe(  data => { this.sendWeatherData(data); },
+                                                                        err => console.error(err));
+      
+
+  }
+  
+private sendWeatherData(data:any){
+    console.log('Weather Report of Clicked Point on the Map '); console.log(data);
+    this.weatherData = JSON.parse(JSON.stringify(data));
+    this.newData.emit(this.weatherData);
   }
 
 }
