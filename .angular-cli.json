@@ -19,10 +19,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/leaflet/dist/leaflet.css",
         "styles.css"
       ],
-      "scripts": ["../node_modules/leaflet/dist/leaflet.js","control.js"],
+      "scripts": ["control.js"],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

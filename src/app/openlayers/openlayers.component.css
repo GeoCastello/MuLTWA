@@ -11,3 +11,17 @@
     margin: 0;
     z-index: -1;
 }
+
+
+#noShow{
+    z-index: -50000000;
+    position: fixed;
+    top:0;
+    right:0;
+    width:0;
+    height: 0;
+}
+
+app-carousel{
+    display: none;
+}

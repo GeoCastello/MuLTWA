@@ -1,2 +1,3 @@
 <div id="map" class="map"></div>
-<app-weather-service></app-weather-service> 
+
+<app-carousel *ngIf="weatherData" [weatherJSON]="weatherData"></app-carousel>

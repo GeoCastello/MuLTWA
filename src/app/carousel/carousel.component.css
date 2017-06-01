@@ -1,3 +1,7 @@
+app-openlayers{ 
+    display: none; 
+}
+
 
 /* somehow, having this bit of CSS in here stops the carousel from breaking. */
 /* trying to put this into the global styles just breaks everything. */
