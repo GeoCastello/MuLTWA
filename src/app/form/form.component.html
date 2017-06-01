@@ -1,124 +1,16 @@
-
 <app-location-service></app-location-service>
-
     <div class="container-fluid" id="all">
 
-        <div class="row-fluid" id="head"> 
-                <div class="col-xs-1">
-                    <i class="fa fa-bars toggle" id="toggle" aria-hidden="true"></i>
-                </div>
-            <h3>Geocoded Location List</h3>
-        </div>
-        <div class="row-fluid">
-            <div id="form_content">       
-
-                <div class="scrollable">
-                        <form>
-                            <div class="group">
-                                <div class="input-group"> 
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                                  <input id="place" type="text" class="form-control" name="place" placeholder="Location">
-                                </div>
-                                <div class="input-group" id='datetimepicker1'>
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                  <input id="calendar" type="text" class="form-control" name="calendar" placeholder="Calendar">
-                                </div>
-                            </div>
-                            
-                            
-                            
-                            <div class="group">
-                                <div class="input-group"> 
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                                  <input id="place" type="text" class="form-control" name="place" placeholder="Location">
-                                </div>
-                                <div class="input-group" id='datetimepicker1'>
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                  <input id="calendar" type="text" class="form-control" name="calendar" placeholder="Calendar">
-                                </div>
-                            </div>
-                            <div class="group">
-                                <div class="input-group"> 
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                                  <input id="place" type="text" class="form-control" name="place" placeholder="Location">
-                                </div>
-                                <div class="input-group" id='datetimepicker1'>
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                  <input id="calendar" type="text" class="form-control" name="calendar" placeholder="Calendar">
-                                </div>
-                            </div>
-                            <div class="group">
-                                <div class="input-group"> 
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                                  <input id="place" type="text" class="form-control" name="place" placeholder="Location">
-                                </div>
-                                <div class="input-group" id='datetimepicker1'>
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                  <input id="calendar" type="text" class="form-control" name="calendar" placeholder="Calendar">
-                                </div>
-                            </div>
-                            <div class="group">
-                                <div class="input-group"> 
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                                  <input id="place" type="text" class="form-control" name="place" placeholder="Location">
-                                </div>
-                                <div class="input-group" id='datetimepicker1'>
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                  <input id="calendar" type="text" class="form-control" name="calendar" placeholder="Calendar">
-                                </div>
-                            </div>
-                            <div class="group">
-                                <div class="input-group"> 
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                                  <input id="place" type="text" class="form-control" name="place" placeholder="Location">
-                                </div>
-                                <div class="input-group" id='datetimepicker1'>
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                  <input id="calendar" type="text" class="form-control" name="calendar" placeholder="Calendar">
-                                </div>
-                            </div>
-                            <div class="group">
-                                <div class="input-group"> 
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                                  <input id="place" type="text" class="form-control" name="place" placeholder="Location">
-                                </div>
-                                <div class="input-group" id='datetimepicker1'>
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                  <input id="calendar" type="text" class="form-control" name="calendar" placeholder="Calendar">
-                                </div>
-                            </div>
-                            <div class="group">
-                                <div class="input-group"> 
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                                  <input id="place" type="text" class="form-control" name="place" placeholder="Location">
-                                </div>
-                                <div class="input-group" id='datetimepicker1'>
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                  <input id="calendar" type="text" class="form-control" name="calendar" placeholder="Calendar">
-                                </div>
-                            </div>
-
-
-                            <br>
-                        </form>
-                    </div>
-                    <button type="button" class="plus btn-success"></button>
-                
-                    <button type="button" class="print btn-danger">PRINT</button>
-                    
+    <div class="row-fluid" id="head"> 
+            <div class="col-xs-11">
+            <input type="text" class="form-control" id="initial_form" placeholder="Going somewhere? It will rain in {{userLocation[0]}} tomorrow!">
             </div>
-
-            
-
-
-                        <!--<div class='input-group date' id='datetimepicker1'>
-                                <input type='text' class="form-control" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div> -->
-
-        </div>
-        
+            <div class="col-xs-1">
+                <i class="fa fa-bars toggle" id="toggle" aria-hidden="true"></i>
+            </div>
     </div>
- 
+    <div class="row-fluid">
+        <div id="form_content"></div>
+    </div>
+</div>
+

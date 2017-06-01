@@ -31,8 +31,8 @@ export class LocationServiceComponent  {
              this.locationAdd [0] =  result.city;
              this.locationAdd [1] =  result.latitude;
              this.locationAdd [2] =  result.longitude;
-             console.log(this.locationAdd);
-             console.log(result);
+             //console.log(this.locationAdd);
+             //console.log(result);
              
            },
            (rej) => {console.error("Could not load data",rej)});

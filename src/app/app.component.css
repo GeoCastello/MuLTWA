@@ -1,22 +1,3 @@
-.navbar{
-    border-radius: 0;
-}
-
-
-.navbar-brand>img {
-  height: 100%;
-  padding: 7px 15px;
-  width: auto;
-}
-
-.navbar-brand {
-    width: 140px;
-    height: 50px;
-    background-image: url("../img/logo1.png");
-    background-size: cover;
-    margin-left: 20px;
-}
-
 #carousel {
     position: fixed;
     height:25vh;
@@ -25,16 +6,11 @@
     right:0;
     padding:10px;
     float: right;
-
+    
     -webkit-transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
     -moz-transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
     -o-transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
     transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
-}
-
-#main{
-    margin-top:20px;
-    min-height:600px;
 }
 
 .navbar-inverse{
@@ -48,6 +24,5 @@
     left:0;
     margin: 0;
     padding: 0;
-    background-color: lightblue;
 }
 

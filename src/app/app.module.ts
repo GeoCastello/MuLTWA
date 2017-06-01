@@ -10,6 +10,8 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { WeatherServiceComponent } from './shared/weather-service/weather-service.component';
 import { LocationServiceComponent } from './shared/location-service/location-service.component';
 
+import { RoutingService } from './shared/routing.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,7 @@ import { LocationServiceComponent } from './shared/location-service/location-ser
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [RoutingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

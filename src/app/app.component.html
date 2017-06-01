@@ -10,19 +10,21 @@
         <span class="icon-bar"></span>
 
                     </button>
-                    <a class="navbar-brand" href="#"></a>  <!-- Logo -->
                 </div>
                 <!-- Collapse navigation -->
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                     <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav">
                         <li class="active">	<a href="#">HOME</a>
 
                         </li>
-                        <li>	<a href="#">TEAM</a>
+                        <li>	<a href="men.html">MEN</a>
 
                         </li>
                     
-                        <li>	<a href="#">HELP</a>
+                        <li>	<a href="#">COSMETICS</a>
+
+                        </li>
+                        <li>	<a href="#">YOUR ACCOUNT</a>
 
                         </li>
                         <!-- <li class="dropdown">
@@ -35,14 +37,26 @@
                                     </li>
                                     -->
                     </ul>
-                    
+                    <!-- Search box -->
+                    <form class="navbar-form navbar-right">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                            <div class="input-group-btn">
+                                <button class="btn btn-info" type="submit">	<i class="glyphicon glyphicon-search"></i>
+
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- End container-fluid -->
         </nav>
         <!-- End navbar-inverse -->
     </div>
-    <app-openlayers></app-openlayers>
+    <app-openlayers>
+        
+    </app-openlayers>
 
     <div class="row-fluid">
         <app-form id="form_area" class="col-lg-3 col-xs-6"></app-form>
