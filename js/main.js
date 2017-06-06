@@ -24,7 +24,7 @@ osm = L.tileLayer(osmUrl, {
 });
 
 // initialize the map on the "map" div with a given center and zoom
-var map = L.map('map').setView([19.04469, 72.9258], 12).addLayer(osm);
+var map = L.map('map').setView([48.115323, 13.836266], 5).addLayer(osm);
     
 //POPUP
 popup = L.popup();
