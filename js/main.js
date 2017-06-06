@@ -1,4 +1,16 @@
 $(document).ready( function() {
+    
+$.datetimepicker.setDateFormatter({
+    parseDate: function (date, format) {
+        var d = moment(date, format);
+        return d.isValid() ? d.toDate() : false;
+    },
+    
+    formatDate: function (date, format) {
+        return moment(date).format(format);
+    }
+});
+    
 
 // =============================
 // ========== LEAFLET ==========
@@ -16,10 +28,13 @@ var map = L.map('map').setView([19.04469, 72.9258], 12).addLayer(osm);
     
 //POPUP
 popup = L.popup();
-popupcontent = $('<div class="well"><div id="datetimepicker2" class="input-append"><input data-format="MM/dd/yyyy HH:mm:ss PP" type="text"></input><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div></div>').click(function() {
-$('#datetimepicker2').datetimepicker({
-  language: 'en',
-  pick12HourFormat: true
+    
+
+popupcontent = $('<div><input id="datetimepicker" type="text" placeholder="Double click me"/><button id="testButton">Click Me!</button></div>').click(function() {
+jQuery('#datetimepicker').datetimepicker({
+  format:'YYYY-MM-DD',
+  formatTime:'h:mm a',
+  formatDate:'YYYY-MM-DD'
 });
 })[0];
 
@@ -34,14 +49,33 @@ function onMapClick(e) {
         .openOn(map);
 
     // get location & ids from map click
-    var latitude = e.latlng.lat
-    var longitude = e.latlng.lng;
-    
-
-    // add marker to map & associated weather card in carousel
-    makeWeatherCard(latitude, longitude);
+    latitude = e.latlng.lat
+    longitude = e.latlng.lng;
 }
 
+$(document).on('click', '#testButton', function() {
+    diffDays=999;
+    today = new Date();
+    forecastDate = new Date(Date.parse(document.getElementById('datetimepicker').value));
+    timeDiff = Math.abs(forecastDate.getTime() - today.getTime());
+    diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    
+    dayWrapper = moment(forecastDate);
+
+    if (diffDays<=14){
+             // add marker to map & associated weather card in carousel
+        makeWeatherCard(latitude, longitude, diffDays);
+        map.closePopup();
+    }
+    else {
+        alert("Forecast maximum is 14 Days.")
+    }
+       
+    
+    document.getElementById('datetimepicker').value="";
+    document.getElementById('datetimepicker').placeholder="Click me!";
+});
+    
 // =============================
 // ========== CAROUSEL =========
 // =============================
@@ -54,10 +88,10 @@ $('.weather-carousel').slick({
     slidesToScroll: 5,
     dots: true
 });
+    
+function makeWeatherCard(lat, lon, numDays) {
 
-function makeWeatherCard(lat, lon) {
-
-    var numDays = 2; // this needs to be an input that is the difference between system date & input date (from calendar)
+    //var numDays = 2; // this needs to be an input that is the difference between system date & input date (from calendar)
 
     // prepare API call
     var apiKey = '66caf7904e4bf65c8754dc23dd947e5d';
@@ -94,7 +128,7 @@ function makeWeatherCard(lat, lon) {
                     '"><h3 class="weather-card-city-name"><b>'
                     + cityName +
                     '</b></h3><h5 class="weather-card-city-date">'
-                    + (numDays-1) +
+                    + (dayWrapper.format("DD.MM.YYYY")) +
                     '</h5><img src="http://openweathermap.org/img/w/'
                     + iconCode +
                     '.png" class="weather-card-conditions-img"><h6 class="weather-card-conditions-text">'
@@ -132,4 +166,7 @@ $(document).on('click', '.weather-card-remove-button', function() {
 
 })
 
+
+
+    
 });
