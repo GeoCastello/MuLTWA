@@ -13,12 +13,25 @@ osm = L.tileLayer(osmUrl, {
 
 // initialize the map on the "map" div with a given center and zoom
 var map = L.map('map').setView([19.04469, 72.9258], 12).addLayer(osm);
+    
+//POPUP
+popup = L.popup();
+popupcontent = $('<div class="well"><div id="datetimepicker2" class="input-append"><input data-format="MM/dd/yyyy HH:mm:ss PP" type="text"></input><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div></div>').click(function() {
+$('#datetimepicker2').datetimepicker({
+  language: 'en',
+  pick12HourFormat: true
+});
+})[0];
 
 map.on('click', onMapClick);
 
 var markerGroup = L.layerGroup().addTo(map);
 
 function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent(popupcontent)
+        .openOn(map);
 
     // get location & ids from map click
     var latitude = e.latlng.lat
