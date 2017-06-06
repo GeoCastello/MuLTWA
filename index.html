@@ -44,9 +44,6 @@
        integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
        crossorigin=""></script>
             
-            <!-- JQUERY -->
-            <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-
             <!-- SLICK (carousel) -->
             <script type="text/javascript" src="./slick-1.6.0/slick/slick.min.js"></script>
             
@@ -118,7 +115,7 @@
         <div class="container-fluid" id="all">
 
             <div class="row-fluid" id="head"> 
-                <h3>Geocoded Location List</h3>
+                <h3>Enter a place name and date</h3>
             </div>
             <div class="row-fluid">
                 <div id="form_content">       
@@ -140,88 +137,10 @@
                             </div>
                         </div>
 
-                        <div class="group">
-                            <div class="input-group"> 
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-map-marker"></i>
-                                </span>
-                                <input id="place" type="text" class="form-control" name="place" placeholder="Location">
-                            </div>
-                            <div class="input-group" id='datetimepicker1'>
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-calendar"></i>
-                                </span>
-                                <input id="calendar" type="text" class="form-control" name="calendar" placeholder="Calendar">
-                            </div>
-                        </div>
-
-                        <div class="group">
-                            <div class="input-group"> 
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-map-marker"></i>
-                                </span>
-                                <input id="place" type="text" class="form-control" name="place" placeholder="Location">
-                            </div>
-                            <div class="input-group" id='datetimepicker1'>
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-calendar"></i>
-                                </span>
-                                <input id="calendar" type="text" class="form-control" name="calendar" placeholder="Calendar">
-                            </div>
-                        </div>
-
-                        <div class="group">
-                            <div class="input-group"> 
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-map-marker"></i>
-                                </span>
-                                <input id="place" type="text" class="form-control" name="place" placeholder="Location">
-                            </div>
-                            <div class="input-group" id='datetimepicker1'>
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-calendar"></i>
-                                </span>
-                                <input id="calendar" type="text" class="form-control" name="calendar" placeholder="Calendar">
-                            </div>
-                        </div>
-
-                        <div class="group">
-                            <div class="input-group"> 
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-map-marker"></i>
-                                </span>
-                                <input id="place" type="text" class="form-control" name="place" placeholder="Location">
-                            </div>
-                            <div class="input-group" id='datetimepicker1'>
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-calendar"></i>
-                                </span>
-                                <input id="calendar" type="text" class="form-control" name="calendar" placeholder="Calendar">
-                            </div>
-                        </div>
-
-                        <div class="group">
-                            <div class="input-group"> 
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-map-marker"></i>
-                                </span>
-                                <input id="place" type="text" class="form-control" name="place" placeholder="Location">
-                            </div>
-                            <div class="input-group" id='datetimepicker1'>
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-calendar"></i>
-                                </span>
-                                <input id="calendar" type="text" class="form-control" name="calendar" placeholder="Calendar">
-                            </div>
-                        </div>
 
                     </form>
                 </div>
-                <button type="button" class="plus btn-success" onclick="increase()"></button>
-
-
-
-                <button type="button" class="print btn-danger">PRINT</button>     
+                <button type="button" id="sendLocation" class="plus btn-success"></button>   
 
             </div>
             </div>

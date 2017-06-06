@@ -30,7 +30,7 @@ var map = L.map('map').setView([48.115323, 13.836266], 5).addLayer(osm);
 popup = L.popup();
     
 
-popupcontent = $('<div><input id="datetimepicker" type="text" placeholder="Double click me"/><button id="testButton">Click Me!</button></div>').click(function() {
+popupcontent = $('<div><input id="datetimepicker" type="text" placeholder="Double click me"/><button id="sendDate">GO!</button></div>').click(function() {
 jQuery('#datetimepicker').datetimepicker({
   format:'YYYY-MM-DD',
   formatTime:'h:mm a',
@@ -53,7 +53,7 @@ function onMapClick(e) {
     longitude = e.latlng.lng;
 }
 
-$(document).on('click', '#testButton', function() {
+$(document).on('click', '#sendDate', function() {
     diffDays=999;
     today = new Date();
     forecastDate = new Date(Date.parse(document.getElementById('datetimepicker').value));
@@ -166,7 +166,79 @@ $(document).on('click', '.weather-card-remove-button', function() {
 
 })
 
-
-
+// ************************************ FORM *********************************
+// CALENDAR
     
+jQuery('#calendar').datetimepicker({
+  format:'YYYY-MM-DD',
+  formatTime:'h:mm a',
+  formatDate:'YYYY-MM-DD'
+});
+    
+    
+function geocoderParse(locationName) {
+    //var numDays = 2; // this needs to be an input that is the difference between system date & input date (from calendar)
+
+    // prepare API call
+    var apiKey = '0362b42c7b60441f98b3cd0e438b685f';
+    var geocoderRequest = new XMLHttpRequest();
+    http://api.opencagedata.com/geocode/v1/json?q=K%C3%B6ln&key=0362b42c7b60441f98b3cd0e438b685f
+    var requestString = 'http://api.opencagedata.com/geocode/v1/json?q='
+                       + locationName + '&key=' + apiKey;
+    console.log(locationName);
+    geocoderRequest.open("GET", requestString, true);
+
+    // replace onload function of the weather request with the logic to build a new weather card using data
+    // from the response & also the leaflet ID of the associated marker.
+    geocoderRequest.onload = function (e) {
+        if (geocoderRequest.readyState === 4) {
+            if (geocoderRequest.status === 200) {
+
+                var geocoderJSON = JSON.parse(geocoderRequest.responseText);
+                
+                console.log(geocoderJSON);
+                
+                lat=geocoderJSON.results["0"].geometry.lat;
+                lon=geocoderJSON.results["0"].geometry.lng;
+                
+                
+                diffDays=999;
+                today = new Date();
+                forecastDate = new Date(Date.parse(document.getElementById('calendar').value));
+                timeDiff = Math.abs(forecastDate.getTime() - today.getTime());
+                diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+                dayWrapper = moment(forecastDate);
+
+                if (diffDays<=14){
+                         // add marker to map & associated weather card in carousel
+                    makeWeatherCard(lat, lon, diffDays);
+                    map.closePopup();
+                }
+                else {
+                    alert("Forecast maximum is 14 Days.")
+                }
+
+
+                document.getElementById('calendar').value="";
+                document.getElementById('calendar').placeholder="Click me!";
+            }
+        }
+    }
+       geocoderRequest.send(null); 
+    };
+
+    $("#calendar").change(function() {
+        $("#calendar").datetimepicker( "hide" );
+    });
+
+    $(document).on("change", "#datetimepicker", function() {
+        $("#datetimepicker").datetimepicker( "hide" );
+    });
+
+    $("#sendLocation").click(function() {
+        var locationName=document.getElementById("place").value;
+        geocoderParse(locationName);
+
+    });
 });

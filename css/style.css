@@ -74,8 +74,13 @@ body{
 
 .weather-carousel-container {
     width: 100%;
+    height: 25vh;
     padding: 5%;
     margin; 0 auto;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+
 }
 
 
@@ -84,7 +89,8 @@ body{
     display: inline-block;
     background-color: 0.6 grey;
     width: 95%;
-    margin: 2.5%;
+    margin-bottom: 1%;
+    margin-left: 2%;
     position: absolute;
     bottom: 0;
     left: 0.1em;
@@ -178,7 +184,9 @@ body{
   overflow: hidden;
 }
 
-
+.slick-prev slick-arrow slick-disabled {
+    background-color: green;
+}
 
 /* ************************************* FORM ************************************** */
 #all{
@@ -188,9 +196,9 @@ body{
 #form_content{
     position: absolute;
     left:0;
-    height: auto;
+    height: 60vh;
     background-color:lightblue;
-    width: 25%;
+    width: 20%;
     padding: 0;
     top: 130px;
     border-bottom-right-radius: 1.5em;
@@ -209,7 +217,7 @@ body{
     padding: 0;
     text-align: center;
     margin: 0;
-    width: 25%;
+    width: 20%;
     border-bottom-right-radius: 2em;
 }
 
