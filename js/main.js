@@ -241,4 +241,30 @@ function geocoderParse(locationName) {
         geocoderParse(locationName);
 
     });
+    
+    
+    
+    //******************************* NAV MENU ************************
+    $(".nav li").on("click", function() {
+        $(".nav li").removeClass("active");
+        $(this).addClass("active");  
+    });
+    
+    $(".nav li a#teamBttn").on("click", function() {
+            $("#help").hide();
+            $("#about").hide();
+            $("#team").toggle();
+        });
+    
+    $(".nav li a#helpBttn").on("click", function() {
+            $("#about").hide();
+            $("#team").hide();
+            $("#help").toggle();
+        });
+    
+    $(".nav li a#aboutBttn").on("click", function() {
+            $("#team").hide();
+            $("#help").hide();
+            $("#about").toggle();
+        });
 });
