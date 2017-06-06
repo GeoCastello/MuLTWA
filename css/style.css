@@ -102,6 +102,7 @@ body{
     position: relative;
     margin: 0.5vw;
     border-radius: 1em;
+    box-shadow: 3px 3px 10px #000, 0 0 0 0px #000 inset;
 }
 
 .card-narrow {
@@ -196,7 +197,7 @@ body{
 #form_content{
     position: absolute;
     left:0;
-    height: 60vh;
+    height: 20vh;
     background-color:lightblue;
     width: 20%;
     padding: 0;
@@ -212,13 +213,14 @@ body{
 #head{
     position: absolute;
     top: 54px;
-    height:50%;
+    height:30%;
     background-color: lightblue;
     padding: 0;
     text-align: center;
     margin: 0;
     width: 20%;
     border-bottom-right-radius: 2em;
+    box-shadow: 3px 3px 10px #000, 0 0 0 0px #000 inset;
 }
 
 
