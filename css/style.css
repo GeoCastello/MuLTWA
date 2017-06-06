@@ -1,0 +1,109 @@
+body{
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    padding:0 0 0 0;
+    margin: 0;
+    background-color:#f4f4f4;
+}
+
+
+footer {
+    padding: 20px;
+    color: #ffffff;
+    background-color: #e8491d;
+    text-align: center;
+}
+
+
+#map {
+    height: 65vh;
+    width: 75vw;
+    margin-bottom: 2.5vh;
+}
+
+
+.weather-carousel {
+  width: 90%;
+  margin: 0 auto;
+  bottom: 0;
+}
+
+.weather-card {
+  background-color: white;
+  border: 1px solid black;
+  position: relative;
+  margin: 0.5vw;
+}
+
+.card-narrow {
+  width: 12.5vw;
+}
+
+.card-wide {
+  width: 17vw;
+}
+
+.weather-card-wide {
+  width: 1000px;
+  margin: 0.5vw;
+  background-color: white;
+  border: 1px solid black;
+  position:relative;
+}
+
+.weather-card-city-name {
+  white-space: nowrap;
+  margin: 1%;
+  text-align: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.weather-card-city-date {
+  text-align: center;
+  overflow: hidden;
+}
+
+.weather-card-conditions-img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+}
+
+.weather-card-conditions-text {
+  text-align: center;
+  overflow: hidden;
+}
+
+.weather-card-remove-button {
+  display: block;
+  margin: auto;
+}
+
+.weather-card-temperature-table {
+  width: 100%;
+}
+
+.weather-card-temperature-col {
+  width: 33%;
+  overflow: hidden;
+}
+
+.weather-card-temperature-min-text {
+  margin: 5px;
+  text-align: left;
+  overflow: hidden;
+}
+
+.weather-card-temperature-avg-text {
+  margin: 5px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.weather-card-temperature-max-text {
+  margin: 5px;
+  text-align: right;
+  overflow: hidden;
+}
