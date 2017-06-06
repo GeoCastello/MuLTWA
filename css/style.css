@@ -1,3 +1,4 @@
+/* ************************************* GENERAL ************************************** */
 body{
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
     padding:0 0 0 0;
@@ -6,25 +7,62 @@ body{
 }
 
 
-footer {
-    padding: 20px;
-    color: #ffffff;
-    background-color: #e8491d;
-    text-align: center;
+/* ************************************* NAV BAR ************************************** */
+.navbar{
+    border-radius: 0;
+}
+
+.navbar-brand>img {
+  height: 100%;
+  padding: 7px 15px;
+  width: auto;
+}
+
+.navbar-brand {
+    width: 140px;
+    height: 50px;
+    background-image: url("../img/logo1.png");
+    background-size: cover;
+    margin-left: 20px;
+}
+
+.navbar-inverse{
+    margin:0;
+    border-radius: 0;
+}
+
+#main{
+    margin-top:20px;
+    min-height:600px;
 }
 
 
-#map {
-    height: 65vh;
-    width: 75vw;
-    margin-bottom: 2.5vh;
+/* ************************************* MAP ************************************** */
+#map 
+{ 
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    bottom:0;
+	display: block;
+    padding: 0;
+    margin: 0;
+    z-index: -1;
 }
 
 
+
+/* ************************************* CAROUSEL ************************************** */
 .weather-carousel {
-  width: 90%;
-  margin: 0 auto;
-  bottom: 0;
+    clear: both;
+    display: inline-block;
+    background: grey;
+    width: 70%;
+    margin-left: 30%;
+    position: absolute;
+    bottom: 0;
 }
 
 .weather-card {
@@ -106,4 +144,127 @@ footer {
   margin: 5px;
   text-align: right;
   overflow: hidden;
+}
+
+
+
+/* ************************************* FORM ************************************** */
+#all{
+    display: inline;
+}
+
+#form_content{
+    position: absolute;
+    left:0;
+    height: auto;
+    background-color:lightblue;
+    width: 30%;
+    padding: 0;
+
+    -webkit-transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+    -moz-transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+    -o-transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+    transition: width 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+}
+
+.toggle{
+    font-size: 20px;
+    position: absolute;
+    margin: auto;
+    top:0;
+    bottom: 0;
+    right: 0;
+    left:0;
+    text-align: center;
+    line-height: 50px;
+}
+
+.toggle:hover{
+    color:darkorange;
+}
+
+.toggleForm{
+    height:0;
+}
+
+#head{
+    height:50px;
+    background-color: lightblue;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+    vertical-align: middle;
+    width: 30%;
+}
+
+
+#left, #right{
+    text-align: center;
+    vertical-align: middle;
+}
+
+#initial_form{
+    position: absolute;
+    left:0;
+    float: left;
+    height: 50px;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    width:100%;
+}
+
+.scrollable {
+    max-height: 450px;
+    overflow-y:auto;
+    margin-bottom: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.group {
+    margin-bottom: 8px;
+}
+
+.plus {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 40%;
+    background-image: url("../img/plus.png") !important;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.print {
+    width: 75px;
+    height: 40px;
+    border-radius: 1em;
+    position: absolute;
+    margin-left: 25%;
+}
+
+button:focus {outline:0;}
+
+h3 {
+    font-family: Georgia, serif;
+}
+
+h2 {
+    width: 220px;
+    height: 30px;
+    font-family: Georgia, serif;
+    font-size: 100%;
+    position: absolute;
+    bottom: 135px;
+    margin-left: 70px;
+    background-image: url("../img/openweather.png") !important;
+}
+
+h4 {
+    font-family: Georgia, serif;
+    font-size: 100%;
+    position: absolute;
+    bottom: 140px;
+    margin-left: 20px;
 }
