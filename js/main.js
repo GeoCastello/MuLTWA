@@ -119,6 +119,9 @@ function makeWeatherCard(lat, lon, numDays) {
 
                 markerIcon = L.icon({iconUrl: 'http://openweathermap.org/img/w/' + iconCode + ".png", iconAnchor: [25,25]});
                 var marker = L.marker([lat,lon], { icon: markerIcon }).addTo(markerGroup);
+                marker.bindTooltip(String.fromCharCode(13) + dayWrapper.format("DD.MM.YYYY"), {
+                    className: 'mapTooltip'
+                });
                 var leafletID = marker._leaflet_id;
                 markerGroup.addLayer(marker);
 
@@ -255,12 +258,7 @@ function geocoderParse(locationName) {
             $("#about").hide();
             $("#team").toggle();
         });
-    
-    $(".nav li a#helpBttn").on("click", function() {
-            $("#about").hide();
-            $("#team").hide();
-            $("#help").toggle();
-        });
+
     
     $(".nav li a#aboutBttn").on("click", function() {
             $("#team").hide();

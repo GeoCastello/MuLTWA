@@ -328,10 +328,19 @@ h4 {
 
 /* ************************************* HELP ************************************** */
 
-.indented {
+.about {
 	padding-left: 20px;
+    padding-right: 40px;
 }
 
-.indented2 {
-	padding-left: 60px;
+/* ************************************* MAP TOOLTIPS (LABELS) ************************************** */
+
+.mapTooltip {
+    font-size: 200%;
+    font-weight: bold;
+    text-shadow: 2px 2px grey;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    padding-left: 15px;
 }
