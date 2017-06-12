@@ -1,4 +1,24 @@
 $(document).ready( function() {
+
+var formPlaces = places({
+container: document.querySelector('#place'),
+language: 'en_US',
+//type: 'city',
+aroundLatLngViaIP: false,
+templates: {
+    value: function(suggestion) {
+    return suggestion.name;
+    }
+}
+});
+
+formPlaces.on('change', e => switchParameters(e));
+
+function switchParameters(e) {
+    //console.log(e);
+    window.formLat = e.suggestion.latlng.lat;
+    window.formLng = e.suggestion.latlng.lng;
+}    
     
 $.datetimepicker.setDateFormatter({
     parseDate: function (date, format) {
@@ -11,7 +31,6 @@ $.datetimepicker.setDateFormatter({
     }
 });
     
-
 // =============================
 // ========== LEAFLET ==========
 // =============================
@@ -28,7 +47,6 @@ var map = L.map('map').setView([48.115323, 13.836266], 5).addLayer(osm);
     
 //POPUP
 popup = L.popup();
-    
 
 popupcontent = $('<div><input id="datetimepicker" type="text" placeholder="Double click me"/><button id="sendDate">GO!</button></div>').click(function() {
 jQuery('#datetimepicker').datetimepicker({
@@ -40,7 +58,7 @@ jQuery('#datetimepicker').datetimepicker({
 
 map.on('click', onMapClick);
 
-var markerGroup = L.layerGroup().addTo(map);
+var markerGroup = L.featureGroup().addTo(map);
 
 function onMapClick(e) {
     popup
@@ -179,32 +197,11 @@ jQuery('#calendar').datetimepicker({
 });
     
     
-function geocoderParse(locationName) {
-    //var numDays = 2; // this needs to be an input that is the difference between system date & input date (from calendar)
-
-    // prepare API call
-    var apiKey = '0362b42c7b60441f98b3cd0e438b685f';
-    var geocoderRequest = new XMLHttpRequest();
-    http://api.opencagedata.com/geocode/v1/json?q=K%C3%B6ln&key=0362b42c7b60441f98b3cd0e438b685f
-    var requestString = 'http://api.opencagedata.com/geocode/v1/json?q='
-                       + locationName + '&key=' + apiKey;
-    console.log(locationName);
-    geocoderRequest.open("GET", requestString, true);
-
-    // replace onload function of the weather request with the logic to build a new weather card using data
-    // from the response & also the leaflet ID of the associated marker.
-    geocoderRequest.onload = function (e) {
-        if (geocoderRequest.readyState === 4) {
-            if (geocoderRequest.status === 200) {
-
-                var geocoderJSON = JSON.parse(geocoderRequest.responseText);
-                
-                console.log(geocoderJSON);
-                
-                lat=geocoderJSON.results["0"].geometry.lat;
-                lon=geocoderJSON.results["0"].geometry.lng;
-                
-                
+function geocoderParse() {
+             
+                lat= window.formLat;
+                lon= window.formLng;
+                 
                 diffDays=999;
                 today = new Date();
                 forecastDate = new Date(Date.parse(document.getElementById('calendar').value));
@@ -225,10 +222,7 @@ function geocoderParse(locationName) {
 
                 document.getElementById('calendar').value="";
                 document.getElementById('calendar').placeholder="Click me!";
-            }
-        }
-    }
-       geocoderRequest.send(null); 
+
     };
 
     $("#calendar").change(function() {
@@ -240,8 +234,7 @@ function geocoderParse(locationName) {
     });
 
     $("#sendLocation").click(function() {
-        var locationName=document.getElementById("place").value;
-        geocoderParse(locationName);
+        geocoderParse();
 
     });
     
