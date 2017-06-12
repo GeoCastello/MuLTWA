@@ -2,7 +2,8 @@ $(document).ready( function() {
 
 var formPlaces = places({
 container: document.querySelector('#place'),
-type: 'city',
+language: 'en_US',
+//type: 'city',
 aroundLatLngViaIP: false,
 templates: {
     value: function(suggestion) {
