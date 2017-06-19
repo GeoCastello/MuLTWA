@@ -106,10 +106,11 @@ $('.weather-carousel').slick({
     slidesToScroll: 5,
     dots: true
 });
+
+// initialize the blueprint array - this will be used later for making sure the carousel always stays in chronological order
+weatherCardBlueprints = [];
     
 function makeWeatherCard(lat, lon, numDays) {
-
-    //var numDays = 2; // this needs to be an input that is the difference between system date & input date (from calendar)
 
     // prepare API call
     var apiKey = '66caf7904e4bf65c8754dc23dd947e5d';
@@ -162,8 +163,20 @@ function makeWeatherCard(lat, lon, numDays) {
                     + maxTemperature +
                     '°</h6></td></tr></table></div></div>'
 
-                // add new weather card to carousel
-                $('.weather-carousel').slick('slickAdd', weatherCard);
+                // put the blueprints for the new card in the blueprints array and sort it
+                weatherCardBlueprints.push([numDays, leafletID, weatherCard]);
+                weatherCardBlueprints.sort(function(a,b) {return a[0]>b[0];} );
+
+                // purge the carousel
+                $('.weather-carousel').slick('slickRemove', null, null, true);
+
+                // rebuild the carousel in the right order using the blueprints
+                for (var i=0; i<weatherCardBlueprints.length; i++) {
+                    $('.weather-carousel').slick('slickAdd', weatherCardBlueprints[i][2]);
+                }
+
+                // center map on new point
+                map.setView([lat, lon], map.getZoom());
             }
         }
     };
@@ -179,6 +192,13 @@ $(document).on('click', '.weather-card-remove-button', function() {
     // get leaflet id from card (should be the same as its marker) & remove the marker
     var weatherCardLeafletID = $(this).parent().attr('leafletid');
     markerGroup.removeLayer(weatherCardLeafletID);
+
+    // remove the blueprint data from the blueprint array since we don't care about it anymore
+    for (var i=0; i<weatherCardBlueprints.length; i++) {
+        if (weatherCardBlueprints[i][1] == weatherCardLeafletID) {
+            weatherCardBlueprints.splice(i, 1); // this removes the element... weird but it works
+        }
+    }
 
     // get this card's data-slick-id & remove it.
     var weatherCardIndex = $(this).parent().attr('data-slick-index');
