@@ -336,7 +336,7 @@ h4 {
 /* ************************************* MAP TOOLTIPS (LABELS) ************************************** */
 
 .mapTooltip {
-    font-size: 200%;
+    font-size: 1.5em;
     font-weight: bold;
     text-shadow: 2px 2px grey;
     border: none;
