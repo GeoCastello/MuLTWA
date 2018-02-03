@@ -115,7 +115,7 @@ function makeWeatherCard(lat, lon, numDays) {
     // prepare API call
     var apiKey = '66caf7904e4bf65c8754dc23dd947e5d';
     var weatherRequest = new XMLHttpRequest();
-    var requestString = 'http://api.openweathermap.org/data/2.5/forecast/daily?lat='
+    var requestString = 'https://api.openweathermap.org/data/2.5/forecast/daily?lat='
                        + lat + '&lon=' + lon + '&cnt=' + numDays + '&APPID=' + apiKey;
     weatherRequest.open("GET", requestString, true);
 
