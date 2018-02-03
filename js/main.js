@@ -1,260 +1,276 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <meta name="description" content=" ">
-        <meta name="keywords" content=" ">
-        <meta name="author" content=" ">
-        <meta property="og:image" content="https://iboates.alpheca.uberspace.de/multwa/img/icon4.png" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://iboates.alpheca.uberspace.de/multwa/index.html" />
-        <meta property="og:title" content="MuLTWA: Multi Locational Temporal Weather Application" />
-        <meta property="og:description" content="Demonstration of web-based weather forecasting service by students at Hochschule Karlsruhe" />
-        <title>MuLTWA</title>
-        
-         <!-- Icon of the website -->
-		<link href="img\icon4.png" rel="shortcut icon" type="image/png">
-        
-        <!-- CSS -->
+$(document).ready( function() {
 
-            <!-- BOOTSTRAP -->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-            
-            <!-- LEAFLET -->
-            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
-            integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
-            crossorigin=""/>
-            
-            <!-- SLICK (carousel) -->
-            <link rel="stylesheet" type="text/css" href="./slick-1.6.0/slick/slick.css"/>
-            <link rel="stylesheet" type="text/css" href="./slick-1.6.0/slick/slick-theme.css"/>
-            
-            <!-- DATETIME PICKER -->
-            <link rel="stylesheet" type="text/css" href="resources/datetimepicker-master/build/jquery.datetimepicker.min.css"/ >
-          
-            <!-- OWN -->
-            <link rel="stylesheet" href="css/style.css"/>
-        
-        
-        
-        <!-- JavaScript -->
+var formPlaces = places({
+container: document.querySelector('#place'),
+language: 'en_US',
+//type: 'city',
+aroundLatLngViaIP: false,
+templates: {
+    value: function(suggestion) {
+    return suggestion.name;
+    }
+}
+});
 
-            <!-- JQUERY -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+formPlaces.on('change', e => switchParameters(e));
 
-            <!-- BOOTSTRAP -->
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-             <!-- Algolia -->
-            <script src="https://cdn.jsdelivr.net/npm/places.js@1.4.14"></script>
-         
-            <!-- LEAFLET -->
-            <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
-       integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
-       crossorigin=""></script>
-            
-            <!-- SLICK (carousel) -->
-            <script type="text/javascript" src="./slick-1.6.0/slick/slick.min.js"></script>
-            
-            <!-- DATETIME PICKER -->
-            <script src="resources/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
-
-            <!-- MOMENT -->
-            <script src="resources/moment/moment.min.js"></script>
-        
-            <!-- OWN -->
-            <script type='text/javascript' src='./js/main.js'></script>
-
-    </head>
-    <body>   
-        
-        
-
-        <!-- **********************   NAVIGATION BAR    ************************ -->
-        <div class="container-fluid">
-        <div class="row nav1">
-            <nav class="navbar navbar-inverse" id="top-menu" role="navigation">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-target="#navbarCollapse" data-toggle="collapse"> <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-
-                        </button>
-                        <a class="navbar-brand" href="#"></a>  <!-- Logo -->
-                        <p class="nav_title">- Multi Locational Temporal Weather Application -</p>
-                    </div>
-                    
-                    <!-- Collapse navigation -->
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                         <ul class="nav navbar-nav navbar-right">
-                             
-                            <li>  <a href="#" id="teamBttn">TEAM</a>
-
-                            </li>
-                        
-                            <li>  <a href="#" id="aboutBttn">ABOUT</a>
-
-                            </li>
-                        </ul>
-                        
-                    </div>
-                </div>
-                <!-- End container-fluid -->
-            </nav>
-            <!-- End navbar-inverse -->
-        </div>
-        </div>
-        
-        <!-- **********************   FORM MENU    ************************ -->
-        <div class="container-fluid" id="all">
-
-            <div class="row-fluid" id="head"> 
-                <h3>Enter a place name and date</h3>
-            </div>
-            <div class="row-fluid">
-                <div id="form_content">       
-
-                <div>
-                    <form>
-                        <div class="group">
-                            <div class="input-group"> 
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-map-marker"></i>
-                                </span>
-                                <input id="place" type="text" class="form-control" name="place" placeholder="Location">
-                            </div>
-                            <div class="input-group" id='datetimepicker1'>
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-calendar"></i>
-                                </span>
-                                <input id="calendar" type="text" class="form-control" name="calendar" placeholder="Calendar">
-                            </div>
-                        </div>
-
-
-                    </form>
-                </div>
-                <button type="button" id="sendLocation" class="plus btn-success"></button>   
-
-            </div>
-            </div>
-        </div>
-        
-        <!-- **********************   MAP    ************************ -->
-        <div id="map"></div>
-        
-        <!-- **********************   CAROUSEL    ************************ -->
-        <div class="container weather-carousel-container">
-            <div class="weather-carousel"></div>
-        </div>
-        
-        <!-- ********************** TEAM *********************** -->
-        <!-- Left-aligned -->
-        <div class = "row" id ="team">
-            <div class="media">
-            <div class="media-left">
-                <a target="_blank" href="https://www.linkedin.com/in/isaac-boates-338547100/"><img src="img/isaac.png" class="media-object" style="width:100px"></a>
-            </div>
-            <div class="media-body">
-                <p>Isaac Boates</p>
-                <small class="text-muted">MSc. Geomatics (2018)</small><br>
-                <small class="text-muted">BSc. Geography and Geographic Information Sciences</small><br>
-                <small class="text-muted">iboates [at] gmail.com</small>
-            </div>
-            </div>
-
-            <div class="media">
-            <div class="media-left">
-                <a target="_blank" href="https://www.linkedin.com/in/geocastello/"><img src="img/adrian.png" class="media-object" style="width:100px"></a>
-            </div>
-            <div class="media-body">
-                <p>Adrián Castelló Martínez</p>
-                <small class="text-muted">MSc. Geomatics Engineering and Geoinformation (2017)</small><br>
-                <small class="text-muted">BSc. Surveying and Geomatics Engineering</small><br>
-                <small class="text-muted">adrianupvtopo [at] gmail.com</small>
-            </div>
-            </div>
-            
-            <div class="media">
-            <div class="media-left">
-                <a target="_blank" href="https://www.linkedin.com/in/olumide-igbiloba/"><img src="img/enoch.png" class="media-object" style="width:100px"></a>
-            </div>
-            <div class="media-body">
-                <p>Igbiloba Olumide Enoch</p>
-                <small class="text-muted">MSc. Geomatics (2018)</small><br>
-                <small class="text-muted">BSc. Urban and Regional Planning</small><br>
-                <small class="text-muted">enocholumide [at] gmail.com</small>
-            </div>
-            </div>
-            
-            <div class="media">
-            <div class="media-left">
-                <a target="_blank" href="https://www.linkedin.com/in/mparrizas/"><img src="img/maca.png" class="media-object" style="width:100px"></a>
-            </div>
-            <div class="media-body">
-                <p>Macarena Parrizas Siles</p>
-                <small class="text-muted">MSc. Geomatics Engineering and Geoinformation (2018)</small><br>
-                <small class="text-muted">BSc. Surveying and Geomatics Engineering</small><br>
-                <small class="text-muted">macarena.parrizas [at] gmail.com</small>
-            </div>
-            </div>
-        </div>
-            
-        </div>
-        
-        <!-- ********************** ABOUT *********************** -->
-        <!-- Left-aligned -->
-        <div class = "row" id ="about">
-
-            <p align="justify" class="about">MuLTWA was created in 2017 by a group of masters students at Hochschule Karlsruhe in Karlsruhe, Germany as the final project for the "Location Based Services" course.</p><br>
-
-            <p align="justify" class="about">Click on the map, or enter a place at the top left, then enter a date to see the weather forefcast there and then.</p><br>
-
-            <div class="media">
-            <div class="media-left">
-                <a target="_blank" href="https://openweathermap.org/api"><img src="img/ow.png" class="media-object" style="width:100px"></a>
-            </div>
-            <div class="media-body">
-                <p>Open Weather Map API</p>
-                <small class="text-muted">OpenWeatherMap API is used to get the weather forecasts.</small><br>
-            </div>
-            </div>
-
-            <div class="media">
-                <div class="media-left">
-                    <a target="_blank" href="https://www.algolia.com/"><img src="img/algolia.png" class="media-object" style="width:100px"></a>
-                </div>
-                <div class="media-body">
-                    <p>Algolia Geocoder</p>
-                    <small class="text-muted">The search bar at the top left is powered by Algolia Geocoder.</small><br>
-                </div>
-            </div>
-
-            <div class="media">
-            <div class="media-left">
-                <a target="_blank" href="http://leafletjs.com/"><img src="img/leaflet.png" class="media-object" style="width:100px"></a>
-            </div>
-            <div class="media-body">
-                <p>Leaflet</p>
-                <small class="text-muted">The map is powered by Leaflet.</small><br>
-            </div>
-            </div>
-            
-            <div class="media">
-            <div class="media-left">
-                <a target="_blank" href="http://kenwheeler.github.io/slick/"><img src="img/slick.png" class="media-object" style="width:100px"></a>
-            </div>
-            <div class="media-body">
-                <p>Slick</p>
-                <small class="text-muted">The carousel at the bottom is powered by Slick</small><br>
-            </div>
-            </div>
-            
-        </div>
+function switchParameters(e) {
+    //console.log(e);
+    window.formLat = e.suggestion.latlng.lat;
+    window.formLng = e.suggestion.latlng.lng;
+}    
     
-    </body>
-</html>
+$.datetimepicker.setDateFormatter({
+    parseDate: function (date, format) {
+        var d = moment(date, format);
+        return d.isValid() ? d.toDate() : false;
+    },
+    
+    formatDate: function (date, format) {
+        return moment(date).format(format);
+    }
+});
+    
+// =============================
+// ========== LEAFLET ==========
+// =============================
+
+var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+osm = L.tileLayer(osmUrl, {
+    maxZoom: 18,
+    attribution: osmAttrib
+});
+
+// initialize the map on the "map" div with a given center and zoom
+var map = L.map('map').setView([48.115323, 13.836266], 5).addLayer(osm);
+    
+//POPUP
+popup = L.popup();
+
+popupcontent = $('<div><input id="datetimepicker" type="text" placeholder="Double click me"/><button id="sendDate">GO!</button></div>').click(function() {
+jQuery('#datetimepicker').datetimepicker({
+  format:'YYYY-MM-DD',
+  formatTime:'h:mm a',
+  formatDate:'YYYY-MM-DD'
+});
+})[0];
+
+map.on('click', onMapClick);
+
+var markerGroup = L.featureGroup().addTo(map);
+
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent(popupcontent)
+        .openOn(map);
+
+    // get location & ids from map click
+    latitude = e.latlng.lat;
+    longitude = e.latlng.lng;
+}
+
+$(document).on('click', '#sendDate', function() {
+
+    diffDays=999;
+    today = moment();
+    forecastDate = moment(document.getElementById('datetimepicker').value, 'YYYY-MM-DD');
+    diffDays = forecastDate.diff(today, 'days')+1;
+
+    if (diffDays<=14){
+             // add marker to map & associated weather card in carousel
+        makeWeatherCard(latitude, longitude, diffDays);
+        map.closePopup();
+    }
+    else {
+        alert("Forecast maximum is 14 Days.")
+    }
+       
+    
+    document.getElementById('datetimepicker').value="";
+    document.getElementById('datetimepicker').placeholder="Click me!";
+});
+    
+// =============================
+// ========== CAROUSEL =========
+// =============================
+
+// initialize carousel
+$('.weather-carousel').slick({
+    infinite: false,
+    variableWidth: false,
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    dots: true
+});
+
+// initialize the blueprint array - this will be used later for making sure the carousel always stays in chronological order
+weatherCardBlueprints = [];
+    
+function makeWeatherCard(lat, lon, numDays) {
+
+    // prepare API call
+    var apiKey = '66caf7904e4bf65c8754dc23dd947e5d';
+    var weatherRequest = new XMLHttpRequest();
+    var requestString = 'https://api.openweathermap.org/data/2.5/forecast/daily?lat='
+                       + lat + '&lon=' + lon + '&cnt=' + numDays + '&APPID=' + apiKey;
+    weatherRequest.open("GET", requestString, true);
+
+    // replace onload function of the weather request with the logic to build a new weather card using data
+    // from the response & also the leaflet ID of the associated marker.
+    weatherRequest.onload = function (e) {
+        if (weatherRequest.readyState === 4) {
+            if (weatherRequest.status === 200) {
+
+                var weatherJSON = JSON.parse(weatherRequest.responseText);
+                console.log(weatherJSON);
+
+                var cityName = weatherJSON.city.name;
+                var avgTemperature = Math.round(weatherJSON.list[numDays-1].temp.day-273.15);
+                var minTemperature = Math.round(weatherJSON.list[numDays-1].temp.min-273.15);
+                var maxTemperature = Math.round(weatherJSON.list[numDays-1].temp.max-273.15);
+                var conditionText = weatherJSON.list[numDays-1].weather[0].main;
+                var iconCode = weatherJSON.list[numDays-1].weather[0].icon;
+
+
+                markerIcon = L.icon({iconUrl: 'http://openweathermap.org/img/w/' + iconCode + ".png", iconAnchor: [25,25]});
+                var marker = L.marker([lat,lon], { icon: markerIcon }).addTo(markerGroup);
+                marker.bindTooltip(String.fromCharCode(13) + forecastDate.format("DD.MM.YYYY"), {
+                    className: 'mapTooltip'
+                });
+                var leafletID = marker._leaflet_id;
+                markerGroup.addLayer(marker);
+
+                // weather card HTML
+                var weatherCard = '<div class="weather-card card-narrow" leafletid="'
+                    + leafletID +
+                    '"><h3 class="weather-card-city-name"><b>'
+                    + cityName +
+                    '</b></h3><h5 class="weather-card-city-date">'
+                    + (forecastDate.format("DD.MM.YYYY")) +
+                    '</h5><img src="http://openweathermap.org/img/w/'
+                    + iconCode +
+                    '.png" class="weather-card-conditions-img"><h6 class="weather-card-conditions-text">'
+                    + conditionText +
+                    '</h6><button class="weather-card-remove-button">Remove</button><table class="weather-card-temperature-table"><tr class="weather-card-temperature-row"><td class="weather-card-temperature-col"><h6 class="weather-card-temperature-min-text">Min: '
+                    + minTemperature +
+                    '°</h6></td class="weather-card-temperature-col"><td class="weather-card-temperature-col"><h6 class="weather-card-temperature-avg-text">Avg: '
+                    + avgTemperature +
+                    '°</h6></td><td><h6 class="weather-card-temperature-max-text">Max: '
+                    + maxTemperature +
+                    '°</h6></td></tr></table></div></div>'
+
+                // put the blueprints for the new card in the blueprints array and sort it
+                weatherCardBlueprints.push([numDays, leafletID, weatherCard]);
+                weatherCardBlueprints.sort(function(a,b) {return a[0]>b[0];} );
+
+                // purge the carousel
+                $('.weather-carousel').slick('slickRemove', null, null, true);
+
+                // rebuild the carousel in the right order using the blueprints
+                for (var i=0; i<weatherCardBlueprints.length; i++) {
+                    $('.weather-carousel').slick('slickAdd', weatherCardBlueprints[i][2]);
+                }
+
+                // center map on new point
+                map.setView([lat, lon], map.getZoom());
+            }
+        }
+    };
+
+    // send request to weather service
+    weatherRequest.send(null);
+
+}
+
+//Remove card
+$(document).on('click', '.weather-card-remove-button', function() {
+
+    // get leaflet id from card (should be the same as its marker) & remove the marker
+    var weatherCardLeafletID = $(this).parent().attr('leafletid');
+    markerGroup.removeLayer(weatherCardLeafletID);
+
+    // remove the blueprint data from the blueprint array since we don't care about it anymore
+    for (var i=0; i<weatherCardBlueprints.length; i++) {
+        if (weatherCardBlueprints[i][1] == weatherCardLeafletID) {
+            weatherCardBlueprints.splice(i, 1); // this removes the element... weird but it works
+        }
+    }
+
+    // get this card's data-slick-id & remove it.
+    var weatherCardIndex = $(this).parent().attr('data-slick-index');
+    $('.weather-carousel').slick('slickRemove', weatherCardIndex)
+    $('.weather-carousel').slick('refresh');
+
+})
+
+// ************************************ FORM *********************************
+// CALENDAR
+    
+jQuery('#calendar').datetimepicker({
+  format:'YYYY-MM-DD',
+  formatTime:'h:mm a',
+  formatDate:'YYYY-MM-DD'
+});
+    
+    
+function geocoderParse() {
+             
+                lat= window.formLat;
+                lon= window.formLng;
+
+                diffDays=999;
+                today = moment();
+                forecastDate = moment(document.getElementById('calendar').value, 'YYYY-MM-DD');
+                diffDays = forecastDate.diff(today, 'days')+1;
+
+                if (diffDays<=14){
+                         // add marker to map & associated weather card in carousel
+                    makeWeatherCard(lat, lon, diffDays);
+                    map.closePopup();
+                }
+                else {
+                    alert("Forecast maximum is 14 Days.")
+                }
+
+
+                document.getElementById('calendar').value="";
+                document.getElementById('calendar').placeholder="Click me!";
+
+    };
+
+    $("#calendar").change(function() {
+        $("#calendar").datetimepicker( "hide" );
+    });
+
+    $(document).on("change", "#datetimepicker", function() {
+        $("#datetimepicker").datetimepicker( "hide" );
+    });
+
+    $("#sendLocation").click(function() {
+        geocoderParse();
+
+    });
+    
+    
+    
+    //******************************* NAV MENU ************************
+    $(".nav li").on("click", function() {
+        $(".nav li").removeClass("active");
+        $(this).addClass("active");  
+    });
+    
+    $(".nav li a#teamBttn").on("click", function() {
+            $("#help").hide();
+            $("#about").hide();
+            $("#team").toggle();
+        });
+
+    
+    $(".nav li a#aboutBttn").on("click", function() {
+            $("#team").hide();
+            $("#help").hide();
+            $("#about").toggle();
+        });
+});
